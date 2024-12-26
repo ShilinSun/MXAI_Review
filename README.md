@@ -1,18 +1,119 @@
 # Literature-MXAI-Review
-This is the repository of A review of Multimodal Explainable Artificial
-Intelligence: Past, Present and Future, a systematic survey of Multimodal Explainable Artificial
+This is the repository of **A Review of Multimodal Explainable Artificial Intelligence: Past, Present and Future**, a systematic review of Multimodal Explainable Artificial
 Intelligence (MXAI) studies in a historical perspective. For details, please refer to: 
 
-A review of Multimodal Explainable Artificial Intelligence: Past, Present and Future [Paper]
+**A Review of Multimodal Explainable Artificial Intelligence: Past, Present and Future** [Paper](https://arxiv.org/abs/2412.14056)
+## 🔥News
+- ☄️ [2024/12/26] We have revised the table of contents, and the remaining sections will be updated progressively.
+## Introduction
+Artificial intelligence (AI) has rapidly developed through advancements in computational power and the growth of massive datasets. However, this progress has also heightened challenges in interpreting the "black-box" nature of AI models. 
+
+To address these concerns, eXplainable AI (XAI) has emerged with a focus on transparency and interpretability to enhance human understanding and trust in AI decision-making processes. In the context of multimodal data fusion and complex reasoning scenarios, the proposal of Multimodal eXplainable AI (MXAI) integrates multiple modalities for prediction and explanation tasks. Meanwhile, the advent of Large Language Models (LLMs) has led to remarkable breakthroughs in natural language processing, yet their complexity has further exacerbated the issue of MXAI. 
+
+To gain key insights into the development of MXAI methods and provide crucial guidance for building more transparent, fair, and trustworthy AI systems, we review the MXAI methods from a historical perspective and categorize them across four eras: traditional machine learning, deep learning, discriminative foundation models, and generative LLMs. We also review evaluation metrics and datasets used in MXAI research, concluding with a discussion of future challenges and directions. 
+
+**We truly appreciate any contributions through PRs, issues, emails, or other means.**
 ## Contents
 
-* [Related Surveys](#related-surveys)
-* [The Era of Traditional Machine Learning (2000-2009)](#the-era-of-traditional-machine-learning-2000-2009)
-* [The Era of Deep Learning (2010-2016)](#the-era-of-deep-learning-2010-2016)
-* [The Era of Discriminative Foundation Models (2017-2021)](#the-era-of-discriminative-foundation-models-2017-2021)
-* [The Era of Generative Large Language Models (2022-2024)](#the-era-of-generative-large-language-models-2022-2024)
-* [Evaluation datasets and metrics](#evaluation-datasets-and-metrics)
-### Related Surveys
+- [Related Surveys](#related-surveys)
+- [1. The Era of Traditional Machine Learning (2000-2009)](#1-the-era-of-traditional-machine-learning-2000-2009)
+  - [1.1 Data explainability](#11-data-explainability)
+    - [1.1.1 Feature selection methods](#111-feature-selection-methods)
+      - [Filter](#filter)
+      - [Wrapper](#wrapper)
+      - [Embedded](#embedded)
+    - [1.1.2 Feature extraction methods](#112-feature-extraction-methods)
+  - [1.2 Model explainability](#12-model-explainability)
+    - [1.2.1 Linear/logistic regression](#121-linearlogistic-regression)
+    - [1.2.2 Decision Tree](#122-decision-tree)
+    - [1.2.3 K-Nearest Neighbors](#123-k-nearest-neighbors)
+    - [1.2.4 Rule-based learning](#124-rule-based-learning)
+    - [1.2.5 Bayesian models](#125-bayesian-models)
+  - [1.3 Post-hoc explainability](#13-post-hoc-explainability)
+    - [1.3.1 Model-agnostic techniques](#131-model-agnostic-techniques)
+      - [Causal Explanation](#causal-explanation)
+      - [Causal Prediction](#causal-prediction)
+      - [Causal Intervention](#causal-intervention)
+    - [1.3.2 Model-specific techniques](#132-model-specific-techniques)
+      - [Tree ensemble](#tree-ensemble)
+      - [Support vector machines](#support-vector-machines)
+- [2. The Era of Deep Learning (2011-2016)](#2-the-era-of-deep-learning-2011-2016)
+  - [2.1 Data explainability](#21-data-explainability)
+    - [2.1.1 Data quality analysis](#211-data-quality-analysis)
+    - [2.1.2 Data interaction analysis](#212-data-interaction-analysis)
+    - [2.1.3 Inherently interpretable models](#213-inherently-interpretable-models)
+  - [2.2 Model explainability](#22-model-explainability)
+    - [2.2.1 Deep neural network interpretability](#221-deep-neural-network-interpretability)
+      - [Decomposability](#decomposability)
+      - [Algorithmic transparency](#algorithmic-transparency)
+    - [2.2.2 Explain the training process](#222-explain-the-training-process)
+      - [Attention-based networks](#attention-based-networks)
+      - [Disentangled representations](#disentangled-representations)
+      - [Generate explanations](#generate-explanations)
+  - [2.3 Post-hoc explainability](#23-post-hoc-explainability)
+    - [2.3.1 Multi-layer neural networks](#231-multi-layer-neural-networks)
+      - [Model simplification](#model-simplification)
+      - [Feature-related explanations](#feature-related-explanations)
+    - [2.3.2 Convolutional Neural Networks](#232-convolutional-neural-networks)
+      - [Understand decision-making processes](#understand-decision-making-processes)
+      - [Investigate module function](#investigate-module-function)
+    - [2.3.3 Recurrent Neural Networks](#233-recurrent-neural-networks)
+      - [Feature-related explanations](#feature-related-explanations)
+      - [Local explanations](#local-explanations)
+- [3. The Era of Discriminative Foundation Models (2017-2021)](#3-the-era-of-discriminative-foundation-models-2017-2021)
+  - [3.1 Data explainability](#31-data-explainability)
+    - [3.1.1 Analyse multimodal datasets](#311-analyse-multimodal-datasets)
+    - [3.1.2 Structural relationship construction](#312-structural-relationship-construction)
+  - [3.2 Model explainability](#32-model-explainability)
+    - [3.2.1 Behavioral explanation](#321-behavioral-explanation)
+      - [Architecture-independent](#architecture-independent) 
+      - [Transformer-based](#transformer-based)
+      - [CLIP-based](#clip-based)
+    - [3.2.2 Structural transparency](#322-structural-transparency)
+      - [GNN-based](#gnn-based)
+      - [Knowledge Graph-based](#knowledge-graph-based)
+      - [Causal-based](#causal-based)
+      - [Others](#others)
+  - [3.3 Post-hoc explainability](#33-post-hoc-explainability)
+    - [3.3.1 Counterfactual-based](#331-counterfactual-based)
+    - [3.3.2 Bias mitigation](#332-bias-mitigation)
+    - [3.3.3 Multimodal learning process explanation](#333-multimodal-learning-process-explanation)
+      - [Multimodal representation](#multimodal-representation)
+      - [Multimodal reasoning](#multimodal-reasoning)
+      - [Visualization](#visualization)
+- [4. The Era of Generative Large Language Models (2022-2024)](#4-the-era-of-generative-large-language-models-2022-2024)
+  - [4.1 Data explainability](#41-data-explainability)
+    - [4.1.1 explain datasets](#411-explain-datasets)
+    - [4.1.2 Data selection](#412-data-selection)
+    - [4.1.3 Graph modeling](#413-graph-modeling)
+  - [4.2 Model explainability](#42-model-explainability)
+    - [4.2.1 Process explanation](#421-process-explanation)
+      - [Explain multimodal-ICL](#explain-multimodal-icl)
+      - [Explain multimodal-CoT](#explain-multimodal-cot)
+      - [Robustness enhancement](#robustness-enhancement)
+    - [4.2.2 Explainable data augmentation](#422-explainable-data-augmentation)
+      - [Small models training](#small-models-training)
+    - [4.2.3 Inherent interpretability](#423-inherent-interpretability)
+      - [Image-Text understanding](#image-text-understanding)
+      - [Video-Text understanding](#video-text-understanding)
+      - [Audio-Text understanding](#audio-text-understanding)
+      - [Multimodal-Text understanding](#multimodal-text-understanding)
+      - [Classifier-based](#classifier-based)
+  - [4.3 Post-hoc explainability](#43-post-hoc-explainability)
+    - [4.3.1 Probing-based explanation](#431-probing-based-explanation)
+      - [Parameter-free](#parameter-free)
+      - [Modular design-based](#modular-design-based)
+    - [4.3.2 Reasoning-based explanation](#432-reasoning-based-explanation)
+      - [External world knowledge-based](#external-world-knowledge-based)
+      - [Feedback-based](#feedback-based)
+    - [4.3.3 Example-based explanation](#433-example-based-explanation)
+      - [Counterfactual examples](#counterfactual-examples)
+      - [Adversarial examples](#adversarial-examples)
+- [5. Evaluation datasets and metrics](#5-evaluation-datasets-and-metrics)
+## Related Surveys
+<details>
+<summary>Click to expand the XAI Survey Comparison Table</summary>
+  
 | Ref. | Published Year | Literature coverage range | Existing surveys are analyzed | MXAI | Transformer explainability | LLMs explainability | Historical perspective | Data explainability | Model explainability | Post-hoc explainability | Evaluation methods | Main theme |
 |------|----------------|--------------------------|--------------------------------|------|----------------------------|---------------------|------------------------|--------------------|----------------------|------------------------|-------------------|------------|
 | Ours | 2024           | 2000-2024                | ✓                              | ✓    | ✓                          | ✓                   | ✓                      | ✓                  | ✓                    | ✓                      | ✓                 | Historical perspective MXAI |
@@ -47,13 +148,175 @@ A review of Multimodal Explainable Artificial Intelligence: Past, Present and Fu
 | [What do we want from Explainable Artificial Intelligence (XAI)? – A stakeholder perspective on XAI and a conceptual model guiding interdisciplinary XAI research](https://www.sciencedirect.com/science/article/abs/pii/S0004370221000242) | 2021 | 2016-2021 | × | × | × | × | × | × | × | × | × | User and their concerns |
 | [Interpretable deep learning: Interpretation, interpretability, trustworthiness, and beyond](https://link.springer.com/article/10.1007/s10115-022-01756-8) | 2021 | 2016-2020 | × | × | × | × | × | × | ✓ | ✓ | ✓ | XAI methods classification |
 
-### The Era of Traditional Machine Learning (2000-2009)
+</details>
 
-### The Era of Deep Learning (2010-2016)
+## 1. The Era of Traditional Machine Learning (2000-2009)
+### 1.1 Data explainability
+#### 1.1.1 Feature selection methods
+##### Filter
+##### Wrapper 
+##### Embedded
+#### 1.1.2 Feature extraction methods
+### 1.2 Model explainability
+#### 1.2.1 Linear/logistic regression
+#### 1.2.2 Decision Tree
+#### 1.2.3 K-Nearest Neighbors
+#### 1.2.4 Rule-based learning
+#### 1.2.5 Bayesian models
+### 1.3 Post-hoc explainability
+#### 1.3.1 Model-agnostic techniques
+##### Causal Explanation
+##### Causal Prediction
+##### Causal Intervention
+#### 1.3.2 Model-specific techniques
+##### Tree ensemble
+##### Support vector machines
+## 2. The Era of Deep Learning (2011-2016)
 
-### The Era of Discriminative Foundation Models (2017-2021)
+### 2.1 Data explainability
 
-### The Era of Generative Large Language Models (2022-2024)
+#### 2.1.1 Data quality analysis
 
-### Evaluation datasets and metrics
+#### 2.1.2 Data interaction analysis
 
+#### 2.1.3 Inherently interpretable models
+
+### 2.2 Model explainability
+
+#### 2.2.1 Deep neural network interpretability
+
+##### Decomposability
+
+##### Algorithmic transparency
+
+#### 2.2.2 Explain the training process
+
+##### Attention-based networks
+
+##### Disentangled representations
+
+##### Generate explanations
+
+### 2.3 Post-hoc explainability
+
+#### 2.3.1 Multi-layer neural networks
+
+##### Model simplification
+
+##### Feature-related explanations
+
+#### 2.3.2 Convolutional Neural Networks
+
+##### Understand decision-making processes
+
+##### Investigate module function
+
+#### 2.3.3 Recurrent Neural Networks
+
+##### Feature-related explanations
+
+##### Local explanations
+
+
+## 3. The Era of Discriminative Foundation Models (2017-2021)
+
+### 3.1 Data explainability
+
+#### 3.1.1 Analyse multimodal datasets
+
+#### 3.1.2 Structural relationship construction
+
+### 3.2 Model explainability
+
+#### 3.2.1 Behavioral explanation
+
+##### Architecture-independent 
+
+##### Transformer-based
+
+##### CLIP-based
+
+#### 3.2.2 Structural transparency
+
+##### GNN-based
+
+##### Knowledge Graph-based
+
+##### Causal-based
+
+##### Others
+### 3.3 Post-hoc explainability
+
+#### 3.3.1 Counterfactual-based
+
+#### 3.3.2 Bias mitigation
+
+#### 3.3.3 Multimodal learning process explanation
+
+##### Multimodal representation
+
+##### Multimodal reasoning
+
+##### Visualization
+
+## 4. The Era of Generative Large Language Models (2022-2024)
+
+### 4.1 Data explainability
+#### 4.1.1 Explain datasets
+
+
+#### 4.1.2 Data selection
+
+
+#### 4.1.3 Graph modeling
+
+
+### 4.2 Model explainability
+#### 4.2.1 Process explanation
+##### Process explanation
+##### Explain multimodal-ICL
+##### Explain multimodal-CoT
+##### Robustness enhancement
+
+#### 4.2.2 Explainable data augmentation
+##### Explainable data augmentation
+##### Small models training
+
+#### 4.2.3 Inherent interpretability
+##### Inherent interpretability
+##### Image-Text understanding
+##### Video-Text understanding
+##### Audio-Text understanding
+##### Multimodal-Text understanding
+##### Classifier-based
+
+### 4.3 Post-hoc explainability
+#### 4.3.1 Probing-based explanation
+##### Probing-based explanation
+##### Parameter-free
+##### Modular design-based
+
+#### 4.3.2 Reasoning-based explanation
+##### Reasoning-based explanation
+##### External world knowledge-based
+##### Feedback-based
+
+#### 4.3.3 Example-based explanation
+##### Example-based explanation
+##### Counterfactual examples
+##### Adversarial examples
+
+
+## 5. Evaluation datasets and metrics
+
+## Citation
+If you find this repository useful, please cite our paper:
+
+```
+@article{sun2024review,
+  title={A Review of Multimodal Explainable Artificial Intelligence: Past, Present and Future},
+  author={Sun, Shilin and An, Wenbin and Tian, Feng and Nan, Fang and Liu, Qidong and Liu, Jun and Shah, Nazaraf and Chen, Ping},
+  journal={arXiv preprint arXiv:2412.14056},
+  year={2024}
+}
+```
